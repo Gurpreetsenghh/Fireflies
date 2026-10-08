@@ -14,7 +14,7 @@ def enable_foreign_keys(dbapi_conn, _):
     if is_sqlite:
         dbapi_conn.execute("PRAGMA foreign_keys=ON")
 
-SessionLocal = sessionmaker(bind=engine, autoflush=False)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
 
 class Base(DeclarativeBase):
     pass

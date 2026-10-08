@@ -521,12 +521,12 @@ Study `app.fireflies.ai` before building. Key patterns:
 
 ### Phase 4 — Notes panel: summary + chapters + action items
 
-- [ ] 4.1 `GET /api/v1/meetings/{id}/action-items` endpoint.
-- [ ] 4.2 Frontend: `NotesPanel` — tabbed or scrollable sections: Summary (overview + key points), Action Items, Outline (chapters).
-- [ ] 4.3 Frontend: Summary section — render `overview` paragraph, `key_points` as bullet list, tags as colored badges.
-- [ ] 4.4 Frontend: Outline/chapters section — list of chapter titles with timestamps. Click → `seek(start_ms)`.
-- [ ] 4.5 Frontend: Action items section — list with checkbox, text, assignee name, due date. Click timestamp → `seek`. Toggling checkbox → optimistic update + `PATCH /api/v1/action-items/{id}`.
-- [ ] 4.6 Commit: `feat: notes panel — summary, chapters, action items`.
+- [x] 4.1 `GET /api/v1/meetings/{id}/action-items` endpoint.
+- [x] 4.2 Frontend: `NotesPanel` — tabbed or scrollable sections: Summary (overview + key points), Action Items, Outline (chapters).
+- [x] 4.3 Frontend: Summary section — render `overview` paragraph, `key_points` as bullet list, tags as colored badges.
+- [x] 4.4 Frontend: Outline/chapters section — list of chapter titles with timestamps. Click → `seek(start_ms)`.
+- [x] 4.5 Frontend: Action items section — list with checkbox, text, assignee name, due date. Click timestamp → `seek`. Toggling checkbox → optimistic update + `PATCH /api/v1/action-items/{id}`.
+- [x] 4.6 Commit: `feat: notes panel — summary, chapters, action items`.
 
 ### Phase 5 — CRUD
 

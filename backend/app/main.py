@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .database import Base, engine, SessionLocal
-from .routers import health, meetings, lookups
+from .routers import health, meetings, lookups, action_items
 from . import models
 from .seed.run import seed_if_empty
 
@@ -35,3 +35,4 @@ app.include_router(health.router)
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(meetings.router, prefix="/api/v1")
 app.include_router(lookups.router, prefix="/api/v1")
+app.include_router(action_items.router, prefix="/api/v1")

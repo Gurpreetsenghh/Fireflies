@@ -530,29 +530,29 @@ Study `app.fireflies.ai` before building. Key patterns:
 
 ### Phase 5 — CRUD
 
-- [ ] 5.1 `POST /api/v1/meetings` — create with transcript text + parsing + mock summarizer.
-- [ ] 5.2 `POST /api/v1/meetings/upload` — multipart file upload (.txt, .vtt, .json).
-- [ ] 5.3 `PATCH /api/v1/meetings/{id}` — update title + participants.
-- [ ] 5.4 `DELETE /api/v1/meetings/{id}` — cascade delete.
-- [ ] 5.5 Action item CRUD: `POST /api/v1/meetings/{id}/action-items`, `PATCH /api/v1/action-items/{id}`, `DELETE /api/v1/action-items/{id}`.
-- [ ] 5.6 Transcript parser service (`transcript_parser.py`): parse plain text (heuristic: `Speaker Name: text` or `[HH:MM:SS] Speaker: text`), `.vtt` (WebVTT format), `.json` (array of `{speaker, start_ms, end_ms, text}`).
-- [ ] 5.7 Mock summarizer service (`summarizer.py`): deterministic. Extract first/last sentences for overview, extract questions for key points, extract sentences with "should"/"need to"/"will"/"action" for action items, split transcript into ~equal chunks for chapters, extract capitalized nouns for tags. No API key needed.
-- [ ] 5.8 Backend tests: create, update, delete, upload.
-- [ ] 5.9 Frontend: `MeetingFormDialog` — create modal with tabs: "Paste Transcript" (textarea), "Upload File" (dropzone), "Details Only" (just title + participants). Mutation via TanStack Query + toast.
-- [ ] 5.10 Frontend: Edit modal — prefilled title + participants. Save triggers `PATCH`.
-- [ ] 5.11 Frontend: Delete confirmation dialog — destructive button, toast on success.
-- [ ] 5.12 Frontend: Action item add/edit inline — add button, inline edit on click, delete icon.
-- [ ] 5.13 Commit: `feat: full CRUD — create, edit, delete meetings + action items`.
+- [x] 5.1 `POST /api/v1/meetings` — create with transcript text + parsing + mock summarizer.
+- [x] 5.2 `POST /api/v1/meetings/upload` — multipart file upload (.txt, .vtt, .json).
+- [x] 5.3 `PATCH /api/v1/meetings/{id}` — update title + participants.
+- [x] 5.4 `DELETE /api/v1/meetings/{id}` — cascade delete.
+- [x] 5.5 Action item CRUD: `POST /api/v1/meetings/{id}/action-items`, `PATCH /api/v1/action-items/{id}`, `DELETE /api/v1/action-items/{id}`.
+- [x] 5.6 Transcript parser service (`transcript_parser.py`): parse plain text (heuristic: `Speaker Name: text` or `[HH:MM:SS] Speaker: text`), `.vtt` (WebVTT format), `.json` (array of `{speaker, start_ms, end_ms, text}`).
+- [x] 5.7 Mock summarizer service (`summarizer.py`): deterministic. Extract first/last sentences for overview, extract questions for key points, extract sentences with "should"/"need to"/"will"/"action" for action items, split transcript into ~equal chunks for chapters, extract capitalized nouns for tags. No API key needed.
+- [x] 5.8 Backend tests: create, update, delete, upload.
+- [x] 5.9 Frontend: `MeetingFormDialog` — create modal with tabs: "Paste Transcript" (textarea), "Upload File" (dropzone), "Details Only" (just title + participants). Mutation via TanStack Query + toast.
+- [x] 5.10 Frontend: Edit modal — prefilled title + participants. Save triggers `PATCH`.
+- [x] 5.11 Frontend: Delete confirmation dialog — destructive button, toast on success.
+- [x] 5.12 Frontend: Action item add/edit inline — add button, inline edit on click, delete icon.
+- [x] 5.13 Commit: `feat: full CRUD — create, edit, delete meetings + action items`.
 
 ### Phase 6 — Polish + placeholders + settings
 
-- [ ] 6.1 Settings page (`/settings`) — Profile, Integrations, Notifications, Privacy sections with "Coming soon" badges. Same AppShell layout.
-- [ ] 6.2 "Coming soon" placeholders: Live Bot, Integrations, Team features — visible in sidebar or as disabled nav items with tooltip.
-- [ ] 6.3 Error boundary: global fallback UI for unexpected errors.
-- [ ] 6.4 "Waking up the server" state: if first API call takes >3 s, show a banner/toast explaining Render cold start.
-- [ ] 6.5 Final UI pass: loading skeletons on all pages, empty states (no meetings, no results, no action items), consistent hover states, focus rings on all interactive elements.
-- [ ] 6.6 Accessibility pass: all buttons have `aria-label`, images have `alt`, modals trap focus, Esc closes modals, tab order is logical.
-- [ ] 6.7 Commit: `feat: settings, placeholders, polish`.
+- [x] 6.1 Settings page (`/settings`) — Profile, Integrations, Notifications, Privacy sections with "Coming soon" badges. Same AppShell layout.
+- [x] 6.2 "Coming soon" placeholders: Live Bot, Integrations, Team features — visible in sidebar or as disabled nav items with tooltip.
+- [x] 6.3 Error boundary: global fallback UI for unexpected errors.
+- [x] 6.4 "Waking up the server" state: if first API call takes >3 s, show a banner/toast explaining Render cold start.
+- [x] 6.5 Final UI pass: loading skeletons on all pages, empty states (no meetings, no results, no action items), consistent hover states, focus rings on all interactive elements.
+- [x] 6.6 Accessibility pass: all buttons have `aria-label`, images have `alt`, modals trap focus, Esc closes modals, tab order is logical.
+- [x] 6.7 Commit: `feat: settings, placeholders, polish`.
 
 ### Phase 7 — README + docs + final deploy
 

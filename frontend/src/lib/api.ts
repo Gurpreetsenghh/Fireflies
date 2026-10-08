@@ -25,6 +25,18 @@ export async function getActionItems(id: number) {
   return api<ActionItem[]>(`/api/v1/meetings/${id}/action-items`);
 }
 
+export async function createMeeting(data: { title: string; date?: string; participants?: string[]; transcript_text?: string }) {
+  return api<MeetingDetail>("/api/v1/meetings", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteMeeting(id: number) {
+  return api<void>(`/api/v1/meetings/${id}`, { method: "DELETE" });
+}
+
 export async function getMe() {
   return api<User>("/api/v1/me");
 }

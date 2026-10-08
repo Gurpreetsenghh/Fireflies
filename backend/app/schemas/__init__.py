@@ -95,6 +95,16 @@ class MeetingListItem(BaseModel):
     tags: List[MeetingTagSchema] = []
     model_config = ConfigDict(from_attributes=True)
 
+class MeetingCreate(BaseModel):
+    title: str
+    date: Optional[datetime] = None
+    participants: Optional[List[str]] = None
+    transcript_text: Optional[str] = None
+
+class MeetingUpdate(BaseModel):
+    title: Optional[str] = None
+    participants: Optional[List[str]] = None
+
 class MeetingListResponse(BaseModel):
     items: List[MeetingListItem]
     total: int

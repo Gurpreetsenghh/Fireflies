@@ -2,12 +2,16 @@
 
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
 import { useMeeting } from "@/hooks/useMeeting";
 import { useTranscript } from "@/hooks/useTranscript";
 import { PlayerProvider, usePlayer } from "@/hooks/usePlayer";
 import { PlayerPanel } from "@/components/detail/PlayerPanel";
 import { TranscriptPanel } from "@/components/detail/TranscriptPanel";
+import { deleteMeeting } from "@/lib/api";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { NotesPanel } from "@/components/detail/NotesPanel";
 import { FindBar } from "@/components/detail/FindBar";
@@ -17,6 +21,21 @@ function MeetingDetailContent({ id }: { id: number }) {
   const { data: transcriptData, isLoading: isTranscriptLoading } = useTranscript(id);
   const { setDurationMs, currentMs } = usePlayer();
   const [showFind, setShowFind] = useState(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const handleDelete = async () => {
+    if (confirm("Are you sure you want to delete this meeting?")) {
+      try {
+        await deleteMeeting(id);
+        toast.success("Meeting deleted");
+        queryClient.invalidateQueries({ queryKey: ["meetings"] });
+        router.push("/meetings");
+      } catch {
+        toast.error("Failed to delete meeting");
+      }
+    }
+  };
 
   useEffect(() => {
     if (meeting?.duration_ms) {
@@ -46,11 +65,16 @@ function MeetingDetailContent({ id }: { id: number }) {
   return (
     <div className="flex flex-col h-full bg-white relative">
       {/* Header */}
-      <div className="h-14 border-b flex items-center px-4 bg-white shrink-0">
-        <Link href="/meetings" className="p-2 hover:bg-slate-100 rounded-full mr-2">
-          <ArrowLeft className="w-5 h-5 text-slate-500" />
-        </Link>
-        <h1 className="font-semibold text-slate-900 truncate">{meeting.title}</h1>
+      <div className="h-14 border-b flex items-center justify-between px-4 bg-white shrink-0">
+        <div className="flex items-center flex-1 min-w-0">
+          <Link href="/meetings" className="p-2 hover:bg-slate-100 rounded-full mr-2 shrink-0">
+            <ArrowLeft className="w-5 h-5 text-slate-500" />
+          </Link>
+          <h1 className="font-semibold text-slate-900 truncate pr-4">{meeting.title}</h1>
+        </div>
+        <button onClick={handleDelete} className="p-2 text-red-500 hover:bg-red-50 rounded-md shrink-0">
+          <Trash2 className="w-4 h-4" />
+        </button>
       </div>
 
       {showFind && (

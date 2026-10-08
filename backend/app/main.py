@@ -3,14 +3,23 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
-from .database import Base, engine
+from .database import Base, engine, SessionLocal
 from .routers import health
+from . import models
+from .seed.run import seed_if_empty
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     os.makedirs("data", exist_ok=True)
     Base.metadata.create_all(bind=engine)
-    # TODO (Phase 1): seed here when the DB is empty
+    
+    # Seed DB
+    db = SessionLocal()
+    try:
+        seed_if_empty(db)
+    finally:
+        db.close()
+        
     yield
 
 app = FastAPI(title="Meetings API", lifespan=lifespan)

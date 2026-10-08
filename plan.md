@@ -14,9 +14,9 @@
 
 | Field | Value |
 |---|---|
-| Current phase | Phase 0 — repo + skeleton + deploy (**in progress**) |
-| Last completed step | 0.1 scaffold backend + frontend (committed `fc210ab`) |
-| Next action | §9 → Phase 0 → step 0.2 |
+| Current phase | Phase 2 — API: read endpoints + meeting list page (**in progress**) |
+| Last completed step | 1.6 Commit Phase 1 (database models + seed data) |
+| Next action | §9 → Phase 2 → step 2.1 |
 | GitHub repo | _(fill in)_ |
 | Live frontend (Vercel) | _(fill in)_ |
 | Live backend (Render) | _(fill in)_ |
@@ -482,20 +482,20 @@ Study `app.fireflies.ai` before building. Key patterns:
 ### Phase 0 — Repo + skeleton + deploy
 
 - [x] 0.1 Scaffold `backend/` (FastAPI app, config, database, health route, requirements.txt, .env.example) and `frontend/` (Next.js + Tailwind + shadcn/ui + TanStack Query + sonner, basic layout, providers, .env.example).
-- [ ] 0.2 Fix `.gitignore`: remove `plan.md` entry, add `*.pyc`, verify `data/` is ignored.
-- [ ] 0.3 Fix scaffold issues per §13 (remove `cn` and `radix-ui` packages, move `shadcn` to devDeps, swap Geist→Inter font, fix `LayoutProps` type, add `expire_on_commit=False` to sessionmaker).
-- [ ] 0.4 Push to GitHub (public repo). Fill in §0.1.
+- [x] 0.2 Fix `.gitignore`: remove `plan.md` entry, add `*.pyc`, verify `data/` is ignored.
+- [x] 0.3 Fix scaffold issues per §13 (remove `cn` and `radix-ui` packages, move `shadcn` to devDeps, swap Geist→Inter font, fix `LayoutProps` type, add `expire_on_commit=False` to sessionmaker).
+- [x] 0.4 Push to GitHub (public repo). Fill in §0.1.
 - [ ] 0.5 Deploy backend to Render (Free Web Service, Root Dir `backend`, Build `pip install -r requirements.txt`, Start `uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1`). Verify `/health` returns OK.
 - [ ] 0.6 Deploy frontend to Vercel (Root Dir `frontend`, set `NEXT_PUBLIC_API_URL` to Render URL). Verify page loads.
 
 ### Phase 1 — Database + seed + models
 
-- [ ] 1.1 Create SQLAlchemy models: `User`, `Meeting`, `Person`, `MeetingParticipant`, `TranscriptSegment`, `Summary`, `Chapter`, `ActionItem`, `Tag`, `MeetingTag`. All in `backend/app/models/`. Cascade deletes on meeting FK. Index on `(meeting_id, position)`.
-- [ ] 1.2 Create Pydantic schemas in `backend/app/schemas/`: request + response models per §6.2.
-- [ ] 1.3 Write seed data JSON (`backend/app/seed/data/meetings.json`) — 6 meetings, realistic transcripts, summaries, action items, chapters, tags.
-- [ ] 1.4 Write seed runner (`backend/app/seed/run.py`). Wire into `main.py` lifespan.
-- [ ] 1.5 Verify: `uvicorn app.main:app` → tables created, data seeded, `/docs` shows schemas. `pytest -q` passes.
-- [ ] 1.6 Commit: `feat: database models + seed data (6 meetings)`.
+- [x] 1.1 Create SQLAlchemy models: `User`, `Meeting`, `Person`, `MeetingParticipant`, `TranscriptSegment`, `Summary`, `Chapter`, `ActionItem`, `Tag`, `MeetingTag`. All in `backend/app/models/`. Cascade deletes on meeting FK. Index on `(meeting_id, position)`.
+- [x] 1.2 Create Pydantic schemas in `backend/app/schemas/`: request + response models per §6.2.
+- [x] 1.3 Write seed data JSON (`backend/app/seed/data/meetings.json`) — 6 meetings, realistic transcripts, summaries, action items, chapters, tags.
+- [x] 1.4 Write seed runner (`backend/app/seed/run.py`). Wire into `main.py` lifespan.
+- [x] 1.5 Verify: `uvicorn app.main:app` → tables created, data seeded, `/docs` shows schemas. `pytest -q` passes.
+- [x] 1.6 Commit: `feat: database models + seed data (6 meetings)`.
 
 ### Phase 2 — API: read endpoints + meeting list page
 

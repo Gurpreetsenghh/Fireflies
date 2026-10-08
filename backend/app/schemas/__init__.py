@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List, Optional, Any
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, model_validator
 import json
 
 class PersonSchema(BaseModel):
@@ -40,15 +40,15 @@ class SummarySchema(BaseModel):
     key_points: List[str]
     short_summary: Optional[str] = None
     
+    @model_validator(mode="before")
     @classmethod
-    def model_validate(cls, obj: Any, *args, **kwargs):
-        if hasattr(obj, "key_points") and isinstance(obj.key_points, str):
+    def parse_key_points(cls, data: Any):
+        if hasattr(data, "key_points") and isinstance(data.key_points, str):
             try:
-                # Convert from JSON string array to python list
-                obj.key_points = json.loads(obj.key_points)
+                data.key_points = json.loads(data.key_points)
             except:
-                obj.key_points = []
-        return super().model_validate(obj, *args, **kwargs)
+                data.key_points = []
+        return data
 
     model_config = ConfigDict(from_attributes=True)
 

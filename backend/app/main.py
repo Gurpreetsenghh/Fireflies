@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .database import Base, engine, SessionLocal
-from .routers import health
+from .routers import health, meetings, lookups
 from . import models
 from .seed.run import seed_if_empty
 
@@ -31,5 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(health.router)                    # /health
-app.include_router(health.router, prefix="/api/v1")  # /api/v1/health
+app.include_router(health.router)
+app.include_router(health.router, prefix="/api/v1")
+app.include_router(meetings.router, prefix="/api/v1")
+app.include_router(lookups.router, prefix="/api/v1")

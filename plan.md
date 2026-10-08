@@ -499,25 +499,25 @@ Study `app.fireflies.ai` before building. Key patterns:
 
 ### Phase 2 — API: read endpoints + meeting list page
 
-- [ ] 2.1 `GET /api/v1/meetings` — list with search, filters (participant, date_from, date_to, tag), sort, pagination.
-- [ ] 2.2 `GET /api/v1/meetings/{id}` — full detail (participants, summary, chapters, tags, no transcript).
-- [ ] 2.3 `GET /api/v1/meetings/{id}/transcript` — ordered segments with speaker name.
-- [ ] 2.4 `GET /api/v1/me`, `GET /api/v1/people`, `GET /api/v1/tags` — lookups.
-- [ ] 2.5 Backend tests: at least test list, detail, and 404.
-- [ ] 2.6 Frontend: `lib/types.ts` — TypeScript types matching Pydantic schemas.
-- [ ] 2.7 Frontend: `lib/api.ts` — extend with typed fetch functions (`getMeetings`, `getMeeting`, `getTranscript`, `getMe`, etc.).
-- [ ] 2.8 Frontend: AppShell layout — Sidebar (logo, nav links, profile), Topbar (search, new meeting button). Apply to `layout.tsx` in `/meetings` route group.
-- [ ] 2.9 Frontend: Meetings list page (`/meetings` = home) — `useMeetings` hook (TanStack Query), `MeetingList`, `MeetingRow` components, loading skeleton, empty state. Search + filters bar. URL-synced filters via `useSearchParams`.
-- [ ] 2.10 Commit: `feat: meetings list API + dashboard UI`.
+- [x] 2.1 `GET /api/v1/meetings` — list with search, filters (participant, date_from, date_to, tag), sort, pagination.
+- [x] 2.2 `GET /api/v1/meetings/{id}` — full detail (participants, summary, chapters, tags, no transcript).
+- [x] 2.3 `GET /api/v1/meetings/{id}/transcript` — ordered segments with speaker name.
+- [x] 2.4 `GET /api/v1/me`, `GET /api/v1/people`, `GET /api/v1/tags` — lookups.
+- [x] 2.5 Backend tests: at least test list, detail, and 404.
+- [x] 2.6 Frontend: `lib/types.ts` — TypeScript types matching Pydantic schemas.
+- [x] 2.7 Frontend: `lib/api.ts` — extend with typed fetch functions (`getMeetings`, `getMeeting`, `getTranscript`, `getMe`, etc.).
+- [x] 2.8 Frontend: AppShell layout — Sidebar (logo, nav links, profile), Topbar (search, new meeting button). Apply to `layout.tsx` in `/meetings` route group.
+- [x] 2.9 Frontend: Meetings list page (`/meetings` = home) — `useMeetings` hook (TanStack Query), `MeetingList`, `MeetingRow` components, loading skeleton, empty state. Search + filters bar. URL-synced filters via `useSearchParams`.
+- [x] 2.10 Commit: `feat: meetings list API + dashboard UI`.
 
 ### Phase 3 — Meeting detail: transcript + player
 
-- [ ] 3.1 Frontend: `PlayerProvider` context — state: `currentMs`, `isPlaying`, `playbackRate`, `durationMs`. Actions: `play`, `pause`, `togglePlay`, `seek(ms)`, `setRate`. Timer: `setInterval` at ~100 ms when playing, advances `currentMs`.
-- [ ] 3.2 Frontend: `PlayerPanel` component — play/pause button, time display (`mm:ss / mm:ss`), SeekBar (range input or custom div), playback speed selector (0.5×, 1×, 1.5×, 2×).
-- [ ] 3.3 Frontend: `TranscriptPanel` — fetch transcript via `useTranscript` hook. Render `TranscriptRow` list. Each row: speaker initial/avatar (colored), speaker name, timestamp (clickable → `seek`), content text. Active row: highlight (§8.2). Auto-scroll active row into view (`scrollIntoView({ block: 'nearest', behavior: 'smooth' })`).
-- [ ] 3.4 Frontend: `FindBar` — Ctrl+F or click search icon opens bar. Input + "n of m" counter + ↑/↓ buttons + close (Esc). Highlight all matches with `<mark>`. Current match extra highlight. Enter = next, Shift+Enter = previous. Cycle at boundaries.
-- [ ] 3.5 Frontend: Two-panel layout on meeting detail page (`/meetings/[id]`) — left (player + transcript), right (notes, placeholder for now). Responsive tabs on md/sm.
-- [ ] 3.6 Commit: `feat: transcript player + search + two-panel layout`.
+- [x] 3.1 Frontend: `PlayerProvider` context — state: `currentMs`, `isPlaying`, `playbackRate`, `durationMs`. Actions: `play`, `pause`, `togglePlay`, `seek(ms)`, `setRate`. Timer: `setInterval` at ~100 ms when playing, advances `currentMs`.
+- [x] 3.2 Frontend: `PlayerPanel` component — play/pause button, time display (`mm:ss / mm:ss`), SeekBar (range input or custom div), playback speed selector (0.5×, 1×, 1.5×, 2×).
+- [x] 3.3 Frontend: `TranscriptPanel` — fetch transcript via `useTranscript` hook. Render `TranscriptRow` list. Each row: speaker initial/avatar (colored), speaker name, timestamp (clickable → `seek`), content text. Active row: highlight (§8.2). Auto-scroll active row into view (`scrollIntoView({ block: 'nearest', behavior: 'smooth' })`).
+- [x] 3.4 Frontend: `FindBar` — Ctrl+F or click search icon opens bar. Input + "n of m" counter + ↑/↓ buttons + close (Esc). Highlight all matches with `<mark>`. Current match extra highlight. Enter = next, Shift+Enter = previous. Cycle at boundaries.
+- [x] 3.5 Frontend: Two-panel layout on meeting detail page (`/meetings/[id]`) — left (player + transcript), right (notes, placeholder for now). Responsive tabs on md/sm.
+- [x] 3.6 Commit: `feat: transcript player + search + two-panel layout`.
 
 ### Phase 4 — Notes panel: summary + chapters + action items
 

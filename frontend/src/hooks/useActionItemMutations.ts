@@ -37,12 +37,53 @@ export function useActionItemMutations(meetingId: number) {
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["meeting", meetingId, "actionItems"] });
     },
+  });
+
+  const addActionItem = useMutation({
+    mutationFn: async (data: { text: string }) => {
+      return api<ActionItem>(`/api/v1/meetings/${meetingId}/action-items`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+    },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["meeting", meetingId, "actionItems"] });
+      toast.success("Action item added");
+    },
+    onError: () => toast.error("Failed to add action item")
+  });
+
+  const editText = useMutation({
+    mutationFn: async ({ id, text }: { id: number; text: string }) => {
+      return api<ActionItem>(`/api/v1/action-items/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["meeting", meetingId, "actionItems"] });
       toast.success("Action item updated");
-    }
+    },
+    onError: () => toast.error("Failed to update action item")
+  });
+
+  const deleteItem = useMutation({
+    mutationFn: async (id: number) => {
+      return api<void>(`/api/v1/action-items/${id}`, { method: "DELETE" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["meeting", meetingId, "actionItems"] });
+      toast.success("Action item deleted");
+    },
+    onError: () => toast.error("Failed to delete action item")
   });
 
   return {
-    toggleComplete
+    toggleComplete,
+    addActionItem,
+    editText,
+    deleteItem
   };
 }

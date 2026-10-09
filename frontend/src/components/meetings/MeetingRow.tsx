@@ -17,10 +17,10 @@ export function MeetingRow({ meeting }: { meeting: MeetingListItem }) {
   return (
     <Link 
       href={`/meetings/${meeting.id}`}
-      className="flex items-center px-4 py-4 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-200 cursor-pointer group"
+      className="flex items-center px-4 py-4 hover:bg-slate-50 dark:bg-slate-900 rounded-lg transition-colors border border-transparent hover:border-slate-200 dark:border-slate-800 cursor-pointer group"
     >
       <div className="flex-1 min-w-0 pr-4">
-        <h3 className="text-sm font-semibold text-slate-900 truncate group-hover:text-primary transition-colors">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50 truncate group-hover:text-primary transition-colors">
           {meeting.title}
         </h3>
         <div className="flex items-center gap-2 mt-1">
@@ -36,11 +36,11 @@ export function MeetingRow({ meeting }: { meeting: MeetingListItem }) {
         </div>
       </div>
       
-      <div className="w-32 text-sm text-slate-500 shrink-0">
+      <div className="w-32 text-sm text-slate-500 dark:text-slate-400 shrink-0">
         {format(date, "MMM d, yyyy")}
       </div>
       
-      <div className="w-24 text-sm text-slate-500 shrink-0">
+      <div className="w-24 text-sm text-slate-500 dark:text-slate-400 shrink-0">
         {formatDuration(meeting.duration_ms)}
       </div>
       
@@ -49,7 +49,7 @@ export function MeetingRow({ meeting }: { meeting: MeetingListItem }) {
           {meeting.participants.slice(0, 4).map((p) => (
             <div 
               key={p.id}
-              className="w-7 h-7 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-xs font-medium text-slate-600 overflow-hidden"
+              className="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white flex items-center justify-center text-xs font-medium text-slate-600 dark:text-slate-400 overflow-hidden"
               title={p.person.name}
             >
               {p.person.avatar_url ? (
@@ -60,7 +60,7 @@ export function MeetingRow({ meeting }: { meeting: MeetingListItem }) {
             </div>
           ))}
           {meeting.participants.length > 4 && (
-            <div className="w-7 h-7 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-medium text-slate-500 z-10">
+            <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white flex items-center justify-center text-[10px] font-medium text-slate-500 dark:text-slate-400 z-10">
               +{meeting.participants.length - 4}
             </div>
           )}

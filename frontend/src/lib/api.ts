@@ -33,8 +33,36 @@ export async function createMeeting(data: { title: string; date?: string; partic
   });
 }
 
+export async function updateMeeting(id: number, data: { title?: string; participants?: string[] }) {
+  return api<MeetingDetail>(`/api/v1/meetings/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
+
 export async function deleteMeeting(id: number) {
   return api<void>(`/api/v1/meetings/${id}`, { method: "DELETE" });
+}
+
+export async function createActionItem(meetingId: number, data: { text: string; assignee?: string; due_date?: string; timestamp_ms?: number }) {
+  return api<ActionItem>(`/api/v1/meetings/${meetingId}/action-items`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateActionItem(id: number, data: { text?: string; completed?: boolean; assignee?: string; due_date?: string }) {
+  return api<ActionItem>(`/api/v1/action-items/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteActionItem(id: number) {
+  return api<void>(`/api/v1/action-items/${id}`, { method: "DELETE" });
 }
 
 export async function getMe() {

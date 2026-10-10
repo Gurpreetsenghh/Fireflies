@@ -58,7 +58,7 @@ class TranscriptSegment(Base):
     __table_args__ = (Index("idx_meeting_position", "meeting_id", "position"),)
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     meeting_id: Mapped[int] = mapped_column(ForeignKey("meetings.id", ondelete="CASCADE"))
-    person_id: Mapped[int] = mapped_column(ForeignKey("people.id", ondelete="CASCADE"))
+    person_id: Mapped[Optional[int]] = mapped_column(ForeignKey("people.id", ondelete="SET NULL"))
     start_ms: Mapped[int] = mapped_column(Integer, nullable=False)
     end_ms: Mapped[int] = mapped_column(Integer, nullable=False)
     content: Mapped[str] = mapped_column(Text, nullable=False)
